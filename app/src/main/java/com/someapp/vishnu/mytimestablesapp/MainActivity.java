@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
     ListView timesView;
 
-    ArrayList<Integer> timesList;
+    ArrayList<String> timesList;
 
-    ArrayAdapter<Integer> timesAdapter;
+    ArrayAdapter<String> timesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         timesView = findViewById(R.id.timeListView);
 
-        timesList = new ArrayList<Integer>();
+        timesList = new ArrayList<String>();
 
         SeekBar numberControl = findViewById(R.id.seekBar);
 
@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 1; i <= size; i++) {
 
-            timesList.add((i-1), numberControl.getProgress()*i);
+            timesList.add((i-1),
+                    numberControl.getProgress()
+                            + " x " + i + " = " + numberControl.getProgress()*i);
 
         }
 
-        timesAdapter = new ArrayAdapter<Integer>(this,
+        timesAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, timesList);
 
         timesView.setAdapter(timesAdapter);
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 1; i <= size; i++) {
 
-                    timesList.set((i-1), (progress+1)*(i));
+                    timesList.set((i-1), progress+1 + " x " + i + " = " + (progress+1)*(i));
 
                 }
 
